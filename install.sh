@@ -301,8 +301,8 @@ info "$(msg "start_install")"
 echo ""
 
 info "$(msg "install_wireguard")"
-apt update -qq &>/dev/null || error_exit "$(msg "update_failed")"
-apt install wireguard -y &>/dev/null || error_exit "$(msg "wireguard_failed")"
+DEBIAN_FRONTEND=noninteractive apt-get update -qq &>/dev/null || error_exit "$(msg "update_failed")"
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends wireguard &>/dev/null || error_exit "$(msg "wireguard_failed")"
 ok "$(msg "wireguard_ok")"
 echo ""
 
